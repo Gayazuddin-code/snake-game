@@ -1,0 +1,4 @@
+up arrow key = up
+down arrow key = down
+left arrow key = left
+right arrow key = right
