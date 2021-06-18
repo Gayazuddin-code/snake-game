@@ -1,4 +1,5 @@
 from turtle import Turtle
+import os
 
 FONT_SIZE = 24
 FONT = ("Arial", FONT_SIZE, "normal")
@@ -33,14 +34,18 @@ class ScoreBoard(Turtle):
         self.update_scoreboard()
 
     def read_highscore(self):
-        with open("highscore_data.txt", mode="r+") as file:
-            file_score = file.read()
-            if file_score == "":
-                file.write("0")
-                self.high_score = 0
-            else:
-                score = int(file_score)
-                self.high_score = score
+        if not os.path.isfile("highscore_data.txt"):
+            print("true")
+            self.write_highscore()
+        else:
+            with open("highscore_data.txt", mode="r+") as file:
+                file_score = file.read()
+                if file_score == "":
+                    file.write("0")
+                    self.high_score = 0
+                else:
+                    score = int(file_score)
+                    self.high_score = score
 
     def write_highscore(self):
         with open("highscore_data.txt", mode="w") as file:
